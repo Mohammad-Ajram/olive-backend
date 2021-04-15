@@ -19,8 +19,8 @@ router.post("/upload", adminCheck, async (req, res) => {
   if (Array.isArray(myFile)) {
     for (let i = 0; i < myFile.length; i++) {
       let path = "/" + Date.now() + "-" + myFile[i].name;
-      images.push(path);
-      await myFile[i].mv(`public${path}`, function (err) {
+      images.push("/images" + path);
+      await myFile[i].mv(`public/images${path}`, function (err) {
         if (err) {
           console.log("The error is", err);
           return res.status(500).send({ msg: "Error occured" });
@@ -39,8 +39,8 @@ router.post("/upload", adminCheck, async (req, res) => {
     res.send({ success: true });
   } else {
     let path = "/" + Date.now() + "-" + myFile.name;
-    images.push(path);
-    await myFile.mv(`public${path}`, function (err) {
+    images.push("/images" + path);
+    await myFile.mv(`public/images${path}`, function (err) {
       if (err) {
         console.log("The error is", err);
         return res.status(500).send({ msg: "Error occured" });
